@@ -1,0 +1,59 @@
+<nav class="pt-2">
+  <div class="flex w-full justify-between border-b-2 p-2">
+    <div>
+      <a
+        class="text-blue-800 px-4 text-sm hover:underline"
+        *ngFor="let link of upperLinks"
+        [routerLink]="link.href"
+        >{{ link.label }}</a
+      >
+    </div>
+    <div>
+      <a
+        routerLink="/signin"
+        class="text-blue-800 px-4 text-sm hover:underline"
+      >
+        <fa-icon [icon]="faUser" class="px-1"></fa-icon>
+        Zaloguj się
+      </a>
+    </div>
+  </div>
+  <div class="flex justify-center items-center p-6 gap-7">
+    <a routerLink="/" class="cursor-pointer">Logo</a>
+    <label class="border-2 rounded-3xl px-4 py-1">
+      <input
+        type="search"
+        class="text-base outline-none border-none"
+        [(ngModel)]="searcher"
+      />
+      |
+      <select class="p-1 outline-none cursor-pointer">
+        <option value="all">Wszystkie</option>
+        <option value="rtv">RTV</option>
+        <option value="agd">AGD</option>
+        <option value="computers">Komputery</option>
+        <option value="smartphones">Smartfony</option>
+      </select>
+      |
+      <button class="p-1">Szukaj</button>
+    </label>
+    <a routerLink="cart" class="cursor-pointer">Koszyk</a>
+  </div>
+  <div
+    class="flex flex-col items-center bg-yellow-300 pt-2"
+    (mouseleave)="hideSubcategory()"
+  >
+    <div class="flex">
+      <a
+        appLink
+        *ngFor="let link of links"
+        (mouseenter)="showSubcategory(link)"
+      >
+        {{ link.label }}
+      </a>
+    </div>
+    <div class="w-full z-auto">
+      <app-auth-subcategory [category]="subcategoryID"></app-auth-subcategory>
+    </div>
+  </div>
+</nav>

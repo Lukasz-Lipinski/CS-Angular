@@ -1,0 +1,19 @@
+<form
+  [formGroup]="signinForm"
+  class="flex flex-col py-3 gap-2 text-sm"
+  (ngSubmit)="signin()"
+>
+  <label class="flex justify-between">
+    <p class="text-sm">Login (Email):</p>
+    <input type="text" class="border-2" formControlName="login" />
+  </label>
+  <label class="flex justify-between">
+    <p class="text-sm">Hasło:</p>
+    <input type="password" class="border-2" formControlName="password" />
+  </label>
+  <app-message [message]="errorMsg" [isError]="!signinForm.valid"></app-message>
+
+  <button type="submit" class="p-1 bg-yellow-300 hover:bg-yellow-200">
+    Zaloguj
+  </button>
+</form>
