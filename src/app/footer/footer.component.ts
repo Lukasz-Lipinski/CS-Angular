@@ -30,7 +30,7 @@ export class FooterComponent implements OnInit {
         'bezpieczeństwo',
         'polityka prywatności',
         'regulamin',
-        'kontakt'
+        'contact'
       ],
     },
     {

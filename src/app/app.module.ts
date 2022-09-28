@@ -18,9 +18,10 @@ import { CategoryComponent } from './category/category.component';
 import { SigninModule } from './signin/signin.module';
 import { FooterComponent } from './footer/footer.component';
 import { UpperletterPipe } from './footer/upperletter.pipe';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
       AuthComponent,
       HomeComponent,
@@ -30,7 +31,8 @@ import { UpperletterPipe } from './footer/upperletter.pipe';
       AdvertComponent,
       CategoryComponent,
       FooterComponent,
-      UpperletterPipe
+      UpperletterPipe,
+      InfoComponent
    ],
   imports: [
     BrowserModule,

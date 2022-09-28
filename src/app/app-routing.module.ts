@@ -1,3 +1,4 @@
+import { InfoComponent } from './info/info.component';
 import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './Home/Home.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent},
   { path: 'claims', component: SpecialOffersComponent},
   { path: 'cart', component: SpecialOffersComponent},
+  { path: ':info', component: InfoComponent },
   { path: ':category/:products', component: CategoryComponent}
 ];
 
