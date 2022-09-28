@@ -3,6 +3,7 @@ import { HomeComponent } from './Home/Home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SpecialOffersComponent } from './special-offers/special-offers.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: "full" },
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent},
   { path: 'claims', component: SpecialOffersComponent},
   { path: 'cart', component: SpecialOffersComponent},
-  { path: ':category/:products', component: SpecialOffersComponent}
+  { path: ':category/:products', component: CategoryComponent}
 ];
 
 @NgModule({

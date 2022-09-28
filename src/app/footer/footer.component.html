@@ -1,0 +1,15 @@
+<footer class="flex gap-10 p-4">
+  <section class="">
+
+  </section>
+  <section *ngFor="let item of footerData">
+    <h1 class="font-bold text-2xl py-4">{{ item.header | upperletter }}</h1>
+    <ul class="flex flex-col" *ngFor="let link of item.links">
+      <li>
+        <a [routerLink]="[link]" class="hover:underline text-sm py-2">
+          {{ link | upperletter }}
+        </a>
+      </li>
+    </ul>
+  </section>
+</footer>

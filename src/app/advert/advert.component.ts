@@ -7,14 +7,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./advert.component.css']
 })
 export class AdvertComponent implements OnInit {
-  title: string = '';
-  description: string = '';
+  adverts: any[] = [];
+  index: number = 1;
+  change: boolean = false;
 
   constructor(private advertService: AdvertService) { }
 
   ngOnInit() {
-    this.title = this.advertService.downloadAdverts().title;
-    this.description = this.advertService.downloadAdverts().description;
-  }
+    this.adverts = this.advertService.downloadAdverts();
+  };
+
+  changeAdvert(advert: "next" | "previous") {
+    this.change = true;
+
+    setTimeout(
+      () => {
+        this.change = false;
+        if (advert === "next" && this.index < this.adverts.length-1 ) {
+          this.index++;
+        } else if (advert === "previous" && this.index > 0) {
+          this.index--;
+        };
+        console.log(this.index);
+      }, 500
+      
+      );
+    
+  };
+
+  
 
 }

@@ -1,10 +1,10 @@
+
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http";
 
 import { AuthSubcategoryComponent } from './auth/auth-subcategory/auth-subcategory.component';
-import { BenefitsComponent } from './signin/benefits/benefits.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,11 +13,11 @@ import { LinkDirective } from './auth/link.directive';
 import { HomeComponent } from './Home/Home.component';
 import { SpecialOffersComponent } from './special-offers/special-offers.component';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { SigninComponent } from './signin/signin.component';
-import { RegisterFormComponent } from './signin/register-form/register-form.component';
-import { SigninFormComponent } from './signin/signin-form/signin-form.component';
-import { MessageComponent } from './signin/message/message.component';
 import { AdvertComponent } from './advert/advert.component';
+import { CategoryComponent } from './category/category.component';
+import { SigninModule } from './signin/signin.module';
+import { FooterComponent } from './footer/footer.component';
+import { UpperletterPipe } from './footer/upperletter.pipe';
 
 @NgModule({
   declarations: [	
@@ -26,21 +26,19 @@ import { AdvertComponent } from './advert/advert.component';
       HomeComponent,
       LinkDirective,
       SpecialOffersComponent,
-      SigninComponent,
-      RegisterFormComponent,
-      SigninFormComponent,
-      BenefitsComponent,
       AuthSubcategoryComponent,
-      MessageComponent,
-      AdvertComponent
+      AdvertComponent,
+      CategoryComponent,
+      FooterComponent,
+      UpperletterPipe
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SigninModule
   ],
   providers: [],
   bootstrap: [AppComponent]

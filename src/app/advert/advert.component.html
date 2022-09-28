@@ -1,15 +1,26 @@
 <section class="grid grid-cols-10 w-screen bg-gray-300">
-  <div
-    class="flex items-center justify-start col-span-1 text-8xl text-blue-800 hover:text-blue-500 cursor-pointer"
-  >
-    &ShortLeftArrow;
+  <div class="flex items-center justify-start col-span-1 text-8xl">
+    <span
+      *ngIf="index > 0"
+      class="cursor-pointer text-blue-800 hover:text-blue-500"
+      (click)="changeAdvert('previous')"
+    >
+      &ShortLeftArrow;
+    </span>
   </div>
 
-  <div class="flex gap-4 col-span-8 items-center justify-center p-5">
+  <div
+    class="flex gap-4 col-span-8 items-center justify-center p-5"
+    [ngClass]="
+      change
+        ? 'transition ease-in-out duration-300 opacity-0 motion-reduce:opacity-100'
+        : ' '
+    "
+  >
     <div class="">
-      <h2 class="font-bold text-2xl">{{ title }}</h2>
+      <h2 class="font-bold text-2xl">{{ adverts[index].title }}</h2>
       <div>
-        <p class="py-3">{{ description }}</p>
+        <p class="py-3">{{ adverts[index].description }}</p>
         <img
           class="rounded-3xl shadow-2xl opacity-95"
           width="70%"
@@ -28,9 +39,13 @@
     </div>
   </div>
 
-  <div
-    class="flex items-center justify-end col-span-1 text-8xl text-blue-800 hover:text-blue-500 cursor-pointer"
-  >
-    &ShortRightArrow;
+  <div class="flex items-center justify-end col-span-1 text-8xl">
+    <span
+      *ngIf="index < adverts.length - 1"
+      (click)="changeAdvert('next')"
+      class="cursor-pointer text-blue-800 hover:text-blue-500"
+    >
+      &ShortRightArrow;
+    </span>
   </div>
 </section>
