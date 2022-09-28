@@ -1,15 +1,27 @@
-<footer class="flex gap-10 p-4">
-  <section class="">
-
+<footer class="flex flex-col gap-5 py-4">
+  <section class="flex bg-gray-200 py-6 gap-16 px-44">
+    <span class="text-2xl flex">
+      <fa-icon [icon]="earIcon"></fa-icon>
+      <p>111-111-111</p>
+    </span>
+    <div class="flex flex-col">
+      <p>pon.-pt.: 8:00-20:00</p>
+      <p>sob.: 9:00-16:00</p>
+      <p class="text-red-500">niedz.: nieczynne</p>
+    </div>
+    <div>logo</div>
   </section>
-  <section *ngFor="let item of footerData">
-    <h1 class="font-bold text-2xl py-4">{{ item.header | upperletter }}</h1>
-    <ul class="flex flex-col" *ngFor="let link of item.links">
-      <li>
-        <a [routerLink]="[link]" class="hover:underline text-sm py-2">
-          {{ link | upperletter }}
-        </a>
-      </li>
-    </ul>
+
+  <section class="flex justify-between px-44">
+    <div *ngFor="let item of footerData">
+      <h1 class="font-bold text-2xl py-4">{{ item.header | upperletter }}</h1>
+      <ul class="flex flex-col" *ngFor="let link of item.links">
+        <li>
+          <a [routerLink]="[link]" class="hover:underline text-sm py-2">
+            {{ link | upperletter }}
+          </a>
+        </li>
+      </ul>
+    </div>
   </section>
 </footer>
