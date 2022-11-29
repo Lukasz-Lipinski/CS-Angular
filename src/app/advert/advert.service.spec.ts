@@ -1,16 +1,60 @@
-/* tslint:disable:no-unused-variable */
+import { Advert, AdvertService, Product } from './advert.service';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 
-import { TestBed, async, inject } from '@angular/core/testing';
-import { AdvertService } from './advert.service';
+describe('Advert Service Testing', () => {
+  let service: AdvertService;
+  let httpTestingController: HttpTestingController;
 
-describe('Service: Advert', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [AdvertService]
-    });
+  const mockedAdverts: Product[] = [
+    {
+      advert: true,
+      brand: 'product1',
+      category: 'product1',
+      description: 'product1',
+      model: 'product1',
+      price: 0,
+      subcategory: 'product1',
+    },
+    {
+      advert: true,
+      brand: 'product2',
+      category: 'product2',
+      description: 'product2',
+      model: 'product2',
+      price: 0,
+      subcategory: 'product2',
+    },
+  ];
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+    }).compileComponents();
+    service = TestBed.inject(AdvertService);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
-  it('should ...', inject([AdvertService], (service: AdvertService) => {
-    expect(service).toBeTruthy();
-  }));
+  afterEach(() => {
+    httpTestingController.verify();
+  });
+
+  it('Should get data from server', (dn: DoneFn) => {
+    service.downloadAdverts().subscribe({
+      next: (adverts) => {
+        expect(adverts.length).toEqual(mockedAdverts.length);
+        dn();
+      },
+    });
+
+    const sendingReq = httpTestingController.expectOne({
+      method: 'GET',
+      url: service.url,
+    });
+
+    sendingReq.flush(mockedAdverts);
+  });
 });

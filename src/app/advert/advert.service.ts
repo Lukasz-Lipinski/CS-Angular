@@ -1,36 +1,49 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, isDevMode } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { environment as productionMode } from 'src/environments/environment.prod';
+import { environment as developmentMode } from 'src/environments/environment';
 
-interface Advert {
+export interface Advert {
   title: string;
   description: string;
 }
 
+export interface Product {
+  advert: boolean;
+  brand: string;
+  model: string;
+  price: number;
+  category: string;
+  subcategory: string;
+  description: string;
+}
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdvertService {
-  url: string = '';
-  adverts: Advert[] = [
-    {
-      title: 'Apple Macbook PRO 15',
-      description: 'Laptop marki Apple w super cenie! Macbook PRO 15, 8 gb Ramu, SSD 512 GB, karta graficzna intel HD 4600. W promocyjnej cenie za 4199 zł!',
-    },
-    {
-      title: 'Apple Macbook PRO 13',
-      description: 'Laptop marki Apple w super cenie! Macbook PRO 13, 16 gb Ramu, SSD 512 GB, karta graficzna intel HD 4600. W promocyjnej cenie za 3499 zł!',
-    },
-    {
-      title: 'Apple Macbook PRO 12',
-      description: 'Laptop marki Apple w super cenie! Macbook PRO 12, 12 gb Ramu, SSD 256 GB, karta graficzna intel HD 4600. W promocyjnej cenie za 2599 zł!',
-    }
-  ]
+  url: string = isDevMode()
+    ? productionMode.backendAPI
+    : developmentMode.backendAPI;
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-downloadAdverts() {
-  return this.adverts;
-};
+  downloadAdverts(): Observable<Advert[]> {
+    return this.http.get<Product[]>(this.url).pipe(
+      map((products) => {
+        const adverts: Advert[] = [];
 
+        products.forEach((item) => {
+          if (item.advert) {
+            adverts.push({
+              title: `${item.brand} ${item.model}`,
+              description: item.description,
+            });
+          }
+        });
+        return adverts;
+      })
+    );
+  }
 }
