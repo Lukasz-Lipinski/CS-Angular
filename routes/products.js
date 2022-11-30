@@ -9,7 +9,7 @@ async function connectToDb() {
     .collection("products");
 }
 
-router.get("/products", async (req, res) => {
+router.get("/api/products", async (req, res) => {
   const products = await (await connectToDb()).find().toArray();
   res.json({ products });
 });
