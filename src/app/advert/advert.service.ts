@@ -10,7 +10,7 @@ export interface Advert {
 }
 
 export interface Product {
-  advert: boolean;
+  specialOffering: boolean;
   brand: string;
   model: string;
   price: number;
@@ -30,12 +30,15 @@ export class AdvertService {
   constructor(private http: HttpClient) {}
 
   downloadAdverts(): Observable<Advert[]> {
-    return this.http.get<Product[]>(this.url).pipe(
-      map((products) => {
+    const url = `${this.url}/api/products`;
+
+    return this.http.get<{ products: Product[] }>(url).pipe(
+      map((allProducts) => {
+        const { products } = allProducts;
         const adverts: Advert[] = [];
 
         products.forEach((item) => {
-          if (item.advert) {
+          if (item.specialOffering) {
             adverts.push({
               title: `${item.brand} ${item.model}`,
               description: item.description,

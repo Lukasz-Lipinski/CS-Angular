@@ -1,23 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Product } from '../advert/advert.service';
+import { CategoryService } from './category.service';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
-  category!: string;
-  products!: string;
-  constructor(private activatedRoute: ActivatedRoute) { }
+  products$!: Observable<Product[]>;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe({
       next: (value: Params) => {
-          this.category = value['category'];
-          this.products = value['products'];
+        const { category, products } = value;
+        this.products$ = this.categoryService.getProducts(category, products);
       },
-    })
+    });
   }
-
 }

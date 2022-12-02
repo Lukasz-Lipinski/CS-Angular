@@ -1,6 +1,4 @@
 <p>category works!</p>
 <p data-testid="category">
-  {{ category }}
-  ||
-  {{ products }}
+  {{ products$ | async | json }}
 </p>

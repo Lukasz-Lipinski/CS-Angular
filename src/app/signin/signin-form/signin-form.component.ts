@@ -1,40 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserData } from '../register-form/register-form.component';
+
+type LoginDataType = Omit<UserData, 'name' | 'surname'>;
 
 @Component({
   selector: 'app-signin-form',
   templateUrl: './signin-form.component.html',
-  styleUrls: ['./signin-form.component.css']
+  styleUrls: ['./signin-form.component.css'],
 })
 export class SigninFormComponent implements OnInit {
   signinForm!: FormGroup;
-  constructor(private builder: FormBuilder) { }
   errorMsg: string = '';
+  @Output() signinEmitter = new EventEmitter<LoginDataType>();
+
+  constructor(private builder: FormBuilder) {}
 
   ngOnInit() {
     this.signinForm = this.builder.group({
-        login: this.builder.control('', [Validators.required]),
-        password: this.builder.control('', [Validators.required]),
-      })
+      login: this.builder.control('', [Validators.required]),
+      password: this.builder.control('', [Validators.required]),
+    });
   }
 
   signin() {
-    this.errorMsg = '';
-
-    if(!this.signinForm.valid) {
-
-      for (let formElementName in this.signinForm.controls) {
-        if (this.signinForm.controls[formElementName].getError('required')) {
-          this.errorMsg = 'Empty fields!';
-          return;
-        }
-      }
-      
-      this.errorMsg = "Invalid data!";
-      return;
+    const loginData: LoginDataType = {
+      email: '',
+      password: '',
     };
-
-    console.log('signin', this.signinForm);
+    if (this.signinForm.valid) {
+      for (let control in this.signinForm.controls) {
+        Object.defineProperty(loginData, control, {
+          value: this.signinForm.controls[control].value,
+        });
+      }
+      this.signinEmitter.emit(loginData);
+    }
   }
-
 }
