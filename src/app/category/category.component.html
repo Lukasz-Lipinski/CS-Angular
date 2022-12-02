@@ -2,3 +2,7 @@
 <p data-testid="category">
   {{ products$ | async | json }}
 </p>
+
+<div *ngFor="let product of products$ | async">
+  <app-category-tie [product]="product"></app-category-tie>
+</div>
