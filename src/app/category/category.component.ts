@@ -11,7 +11,6 @@ import { CategoryService } from './category.service';
 })
 export class CategoryComponent implements OnInit {
   products$?: Observable<Product[]>;
-  isLoading = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,

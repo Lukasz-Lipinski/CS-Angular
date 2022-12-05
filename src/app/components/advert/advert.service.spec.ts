@@ -11,7 +11,7 @@ describe('Advert Service Testing', () => {
 
   const mockedAdverts: Product[] = [
     {
-      advert: true,
+      specialOffering: true,
       brand: 'product1',
       category: 'product1',
       description: 'product1',
@@ -20,7 +20,7 @@ describe('Advert Service Testing', () => {
       subcategory: 'product1',
     },
     {
-      advert: true,
+      specialOffering: true,
       brand: 'product2',
       category: 'product2',
       description: 'product2',
@@ -45,6 +45,8 @@ describe('Advert Service Testing', () => {
   it('Should get data from server', (dn: DoneFn) => {
     service.downloadAdverts().subscribe({
       next: (adverts) => {
+        console.log(adverts);
+
         expect(adverts.length).toEqual(mockedAdverts.length);
         dn();
       },
@@ -52,7 +54,7 @@ describe('Advert Service Testing', () => {
 
     const sendingReq = httpTestingController.expectOne({
       method: 'GET',
-      url: service.url,
+      url: `${service.url}/api/products`,
     });
 
     sendingReq.flush(mockedAdverts);

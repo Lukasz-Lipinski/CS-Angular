@@ -1,28 +1,43 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Product } from 'src/app/components/advert/advert.service';
 import { CategoryTieComponent } from './category-tie.component';
 
-describe('CategoryTieComponent', () => {
+describe('Testing Category Tie Component', () => {
   let component: CategoryTieComponent;
   let fixture: ComponentFixture<CategoryTieComponent>;
+  const mockedProduct: Product = {
+    brand: 'test',
+    category: 'test',
+    description: 'test',
+    model: 'test',
+    price: 22,
+    specialOffering: true,
+    subcategory: 'test',
+  };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CategoryTieComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [CategoryTieComponent],
+    }).compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(CategoryTieComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    component.product = mockedProduct;
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('Class tests', () => {
+    it('Should get mockedProduct', () => {
+      expect(component.product).toBe(mockedProduct);
+    });
+
+    it('Should implement new title', () => {
+      expect(component.getTitle).toBeTruthy();
+    });
+  });
+
+  describe('DOM tests', () => {
+    it('Should render', () => {
+      expect(component).toBeTruthy();
+    });
   });
 });

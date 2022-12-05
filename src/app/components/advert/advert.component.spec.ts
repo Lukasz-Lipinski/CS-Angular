@@ -7,15 +7,19 @@ import { By } from '@angular/platform-browser';
 import { AdvertComponent } from './advert.component';
 import { AdvertService, Product } from './advert.service';
 
+interface mockedProducts extends Product {
+  specialOffering: boolean;
+}
+
 describe('Testing Advert Component', () => {
   let fixture: ComponentFixture<AdvertComponent>;
   let component: AdvertComponent;
   let advertService: AdvertService;
   let httpController: HttpTestingController;
 
-  const mockedProducts: Product[] = [
+  const mockedProducts: mockedProducts[] = [
     {
-      advert: true,
+      specialOffering: true,
       brand: 'product1',
       category: 'product1',
       description: 'product1',
@@ -24,7 +28,7 @@ describe('Testing Advert Component', () => {
       subcategory: 'product1',
     },
     {
-      advert: true,
+      specialOffering: true,
       brand: 'product2',
       category: 'product2',
       description: 'product2',
