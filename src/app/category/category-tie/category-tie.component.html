@@ -1,7 +1,7 @@
-<div class="flex flex-col">
-  <p>{{ product.brand }}</p>
-  <p>{{ product.category }}</p>
-  <p>{{ product.description }}</p>
-  <p>{{ product.price }}</p>
-  <p>{{ product.model }}</p>
-</div>
+<li class="grid grid-cols-3 list-none border p-4">
+  <p class="col-span-1">Marka: {{ product.brand }}</p>
+  <p class="col-span-1">Model: {{ product.model }}</p>
+  <p class="col-span-1">Cena: {{ product.price }}</p>
+  <p class="col-span-3">Kategoria: {{ product.category }}</p>
+  <p class="col-span-3">Opis: {{ product.description }}</p>
+</li>

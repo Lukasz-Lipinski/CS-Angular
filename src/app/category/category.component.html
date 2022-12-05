@@ -1,8 +1,10 @@
-<p>category works!</p>
-<p data-testid="category">
-  {{ products$ | async | json }}
-</p>
+<ng-template #spinner>
+  <h1>Wczytywanie</h1>
+</ng-template>
 
-<div *ngFor="let product of products$ | async">
-  <app-category-tie [product]="product"></app-category-tie>
-</div>
+<ul *ngIf="products$ | async; else spinner">
+  <app-category-tie
+    *ngFor="let product of products$ | async"
+    [product]="product"
+  ></app-category-tie>
+</ul>

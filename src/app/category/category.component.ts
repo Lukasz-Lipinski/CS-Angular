@@ -10,7 +10,8 @@ import { CategoryService } from './category.service';
   styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
-  products$!: Observable<Product[]>;
+  products$?: Observable<Product[]>;
+  isLoading = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
