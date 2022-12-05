@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Product } from '../advert/advert.service';
+import { Product } from '../components/advert/advert.service';
 import { CategoryService } from './category.service';
 
 @Component({

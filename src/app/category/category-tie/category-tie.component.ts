@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/advert/advert.service';
+import { Product } from 'src/app/components/advert/advert.service';
 
 @Component({
   selector: 'app-category-tie[product]',
@@ -10,6 +10,11 @@ export class CategoryTieComponent implements OnInit {
   @Input() product!: Product;
 
   constructor() {}
+
+  get getTitle() {
+    const { brand, model, subcategory } = this.product;
+    return `${subcategory} ${brand} ${model}`;
+  }
 
   ngOnInit() {}
 }

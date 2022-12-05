@@ -1,0 +1,10 @@
+<div>
+  <p>Do sklepu: <span class="text-green-500">już za godzinę!</span></p>
+  <p>
+    Do domu:
+    <span [ngClass]="hour < 13 ? 'text-green-500' : 'text-yellow-500'">{{
+      getCapabilityOfHomeTransport
+    }}</span>
+  </p>
+  <p>{{ getTransportInfo }}</p>
+</div>

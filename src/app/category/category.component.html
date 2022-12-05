@@ -2,7 +2,7 @@
   <h1>Wczytywanie</h1>
 </ng-template>
 
-<ul *ngIf="products$ | async; else spinner">
+<ul class="w-100" *ngIf="products$ | async; else spinner">
   <app-category-tie
     *ngFor="let product of products$ | async"
     [product]="product"

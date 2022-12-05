@@ -1,7 +1,13 @@
-<li class="grid grid-cols-3 list-none border p-4">
-  <p class="col-span-1">Marka: {{ product.brand }}</p>
-  <p class="col-span-1">Model: {{ product.model }}</p>
-  <p class="col-span-1">Cena: {{ product.price }}</p>
-  <p class="col-span-3">Kategoria: {{ product.category }}</p>
-  <p class="col-span-3">Opis: {{ product.description }}</p>
+<li class="grid grid-cols-4 list-none border">
+  <div class="col-span-3 flex flex-col p-4">
+    <span class="font-bold">{{ getTitle }}</span>
+    <p class="col-span-3">Opis: {{ product.description }}</p>
+  </div>
+  <div class="col-span-1 bg-slate-100 p-4 flex flex-col items-center gap-4">
+    <p class="text-red-700 text-xl font-bold">Cena: {{ product.price }} zł</p>
+    <app-details [product]="product"></app-details>
+    <button class="bg-yellow-300 p-3 hover:bg-yellow-200">
+      {{ "do koszyka" | uppercase }}
+    </button>
+  </div>
 </li>

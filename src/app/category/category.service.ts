@@ -3,7 +3,7 @@ import { Injectable, isDevMode } from '@angular/core';
 import { map, Observable, take } from 'rxjs';
 import { environment as devEnv } from 'src/environments/environment';
 import { environment as prodEnv } from 'src/environments/environment.prod';
-import { Product } from '../advert/advert.service';
+import { Product } from '../components/advert/advert.service';
 
 @Injectable({
   providedIn: 'root',
