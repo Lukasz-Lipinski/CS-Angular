@@ -33,8 +33,7 @@ export class AdvertService {
     const url = `${this.url}/api/products`;
 
     return this.http.get<{ products: Product[] }>(url).pipe(
-      map((allProducts) => {
-        const { products } = allProducts;
+      map(({ products }) => {
         const adverts: Advert[] = [];
 
         products.forEach((item) => {

@@ -57,6 +57,8 @@ describe('Advert Service Testing', () => {
       url: `${service.url}/api/products`,
     });
 
-    sendingReq.flush(mockedAdverts);
+    sendingReq.flush({
+      products: mockedAdverts,
+    });
   });
 });
