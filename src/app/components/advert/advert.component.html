@@ -1,5 +1,8 @@
 <section class="grid grid-cols-10 w-screen bg-gray-300">
-  <div class="flex items-center justify-start col-span-1 text-8xl">
+  <div
+    class="flex items-center justify-start col-span-1 text-8xl"
+    data-testid="prev_btn"
+  >
     <span
       *ngIf="index > 0"
       class="cursor-pointer text-blue-800 hover:text-blue-500"
@@ -18,10 +21,15 @@
     "
   >
     <div class="" data-testid="advert-body">
-      <h2 class="font-bold text-2xl">{{ adverts[index].title }}</h2>
+      <h2 class="font-bold text-2xl" data-testid="advert-body-header">
+        {{ adverts[index].title }}
+      </h2>
       <div>
-        <p class="py-3">{{ adverts[index].description }}</p>
+        <p class="py-3" data-testid="advert-body-description">
+          {{ adverts[index].description }}
+        </p>
         <img
+          data-testid="advert-body-img"
           class="rounded-3xl shadow-2xl opacity-95"
           width="70%"
           src="assets/laptop-g0d0db25ef_1920.jpg"
@@ -39,7 +47,10 @@
     </div>
   </div>
 
-  <div class="flex items-center justify-end col-span-1 text-8xl">
+  <div
+    class="flex items-center justify-end col-span-1 text-8xl"
+    data-testid="next_btn"
+  >
     <span
       *ngIf="index < adverts.length - 1"
       (click)="changeAdvert('next')"

@@ -12,6 +12,7 @@ describe('Testing Advert Component', () => {
   let component: AdvertComponent;
   let advertService: AdvertService;
   let httpController: HttpTestingController;
+  let url: string;
 
   const mockedProducts: Product[] = [
     {
@@ -44,6 +45,7 @@ describe('Testing Advert Component', () => {
     component = fixture.componentInstance;
     advertService = TestBed.inject(AdvertService);
     httpController = TestBed.inject(HttpTestingController);
+    url = `${advertService.url}/api/products`;
   });
 
   describe('Class tests', () => {
@@ -54,7 +56,7 @@ describe('Testing Advert Component', () => {
       httpController
         .expectOne({
           method: 'GET',
-          url: `${advertService.url}/api/products`,
+          url,
         })
         .flush({
           products: mockedProducts,
@@ -70,7 +72,7 @@ describe('Testing Advert Component', () => {
       httpController
         .expectOne({
           method: 'GET',
-          url: `${advertService.url}/api/products`,
+          url,
         })
         .flush({
           products: mockedProducts,
@@ -87,6 +89,84 @@ describe('Testing Advert Component', () => {
   describe('DOM tests', () => {
     it('Should render correctly', () => {
       expect(component).toBeTruthy();
+    });
+
+    it('Should render exactly one advert', (dn: DoneFn) => {
+      component.ngOnInit();
+      dn();
+
+      httpController
+        .expectOne({
+          method: 'GET',
+          url,
+        })
+        .flush({
+          products: mockedProducts,
+        });
+
+      fixture.detectChanges();
+
+      const advert = fixture.debugElement
+        .queryAll(By.css('div'))
+        .find((selector) => {
+          const dataTestId = (
+            selector.nativeElement as HTMLDivElement
+          ).getAttribute('data-testid');
+          return dataTestId === 'advert-body' && selector;
+        })?.nativeElement as HTMLDivElement;
+
+      const header = advert.querySelector('h2')?.textContent;
+      const description = advert
+        .querySelector('div')
+        ?.querySelector(
+          'p[data-testid="advert-body-description"]'
+        )?.textContent;
+      const img = advert
+        .querySelector('div')
+        ?.querySelector('img') as HTMLImageElement;
+
+      const title = `${mockedProducts[component.index].brand} ${
+        mockedProducts[component.index].model
+      }`;
+
+      expect(advert).toBeTruthy();
+      expect(header?.trim()).toEqual(title);
+      expect(description?.trim()).toEqual(
+        mockedProducts[component.index].description
+      );
+      expect(img.src).not.toBeNull();
+    });
+
+    it('Should renter 2 buttons', (dn: DoneFn) => {
+      component.ngOnInit();
+      dn();
+
+      httpController
+        .expectOne({
+          method: 'GET',
+          url,
+        })
+        .flush({
+          products: mockedProducts,
+        });
+
+      fixture.detectChanges();
+
+      const advert = fixture.debugElement.query(By.css('section'))
+        .nativeElement as HTMLElement;
+
+      const leftBtn = advert.querySelector(
+        '[data-testid="prev_btn"]'
+      ) as HTMLDivElement;
+      const rightBtn = advert.querySelector(
+        '[data-testid="next_btn"]'
+      ) as HTMLDivElement;
+
+      expect(leftBtn).toBeTruthy();
+      expect(rightBtn).toBeTruthy();
+
+      expect(leftBtn.querySelector('span')?.textContent).not.toBeNull();
+      expect(rightBtn.querySelector('span')?.textContent).not.toBeNull();
     });
   });
 });
