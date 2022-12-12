@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './footer.component';
 import { FooterLink, FooterService } from './footer.service';
+import { UpperletterPipe } from './upperletter.pipe';
 
 describe('Testing Footer Component', () => {
   let fixture: ComponentFixture<FooterComponent>;
@@ -12,7 +15,8 @@ describe('Testing Footer Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FooterComponent],
+      declarations: [FooterComponent, UpperletterPipe],
+      imports: [FontAwesomeModule],
       providers: [
         {
           provide: FooterService,
@@ -42,6 +46,10 @@ describe('Testing Footer Component', () => {
         });
       });
     });
+
+    it("Should take faPhone from external library", () => {
+      expect(component.earIcon).toBeDefined();
+    })
   });
 
   describe('DOM Tests', () => {
@@ -49,6 +57,25 @@ describe('Testing Footer Component', () => {
       expect(component).toBeDefined();
     });
 
-    it('Should return ', () => {});
+    it('Should return 2 different section', () => {
+      const sections = fixture.debugElement.queryAll(By.css('section'));
+
+      sections.forEach((section) => {
+        expect(section).toBeDefined();
+      });
+    });
+
+    it('Should return section including details', () => {
+      fixture.detectChanges();
+      const infoSection = fixture.debugElement.query(
+        By.css('section[data-testid="info-section"]')
+      );
+
+      const span = infoSection.query(By.css('span'))
+        .nativeElement as HTMLSpanElement;
+
+      expect(span.querySelector('p')?.textContent).toEqual('111-111-111');
+      expect(span.querySelector('fa-icon')?.querySelector('svg')).toBeDefined();
+    });
   });
 });
