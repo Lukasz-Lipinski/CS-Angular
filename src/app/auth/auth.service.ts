@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
 export interface Subcategory {
-  [categoryName: string]: string[]
+  [categoryName: string]: string[];
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   subcategories: Subcategory = {
@@ -15,6 +15,7 @@ export class AuthService {
     Smartfony: ['Apple', 'Samsung', 'Nokia', 'Motorola', 'Lenovo'],
   };
 
-constructor() { }
+  isLogged = false;
 
+  constructor() {}
 }

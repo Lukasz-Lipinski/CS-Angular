@@ -1,50 +1,19 @@
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit } from '@angular/core';
+import { FooterLink, FooterService } from './footer.service';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
   earIcon = faPhone;
-  footerData: {header: string, links: string[]}[] = [
-    {
-      header: "zakupy",
-      links: [
-        'dostawa',
-        'zwroty',
-        'raty'
-      ]
-    },
-    {
-      header: 'Moje Konto',
-      links: [
-        'korzyści',
-        'rejestracja paragonu'
-      ],
-    },
-    {
-      header: 'informacje',
-      links: [
-        'bezpieczeństwo',
-        'polityka prywatności',
-        'regulamin',
-        'contact'
-      ],
-    },
-    {
-    header: 'CS',
-    links: [
-      'o firmie',
-      'sklepy',
-    ]
-    }
-  ];
+  footerData: FooterLink[] = [];
 
-  constructor() { }
+  constructor(private footerService: FooterService) {}
 
   ngOnInit() {
+    this.footerData = this.footerService.getLinks();
   }
-
 }
