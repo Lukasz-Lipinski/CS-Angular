@@ -8,7 +8,7 @@ import { Product } from 'src/app/components/advert/advert.service';
 })
 export class CategoryTieComponent implements OnInit {
   @Input() product!: Product;
-
+  @Input() last?: boolean;
   constructor() {}
 
   get getTitle() {

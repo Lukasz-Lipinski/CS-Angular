@@ -18,7 +18,7 @@ export class SigninFormComponent implements OnInit {
 
   ngOnInit() {
     this.signinForm = this.builder.group({
-      login: this.builder.control('', [Validators.required]),
+      email: this.builder.control('', [Validators.required]),
       password: this.builder.control('', [Validators.required]),
     });
   }
@@ -28,12 +28,15 @@ export class SigninFormComponent implements OnInit {
       email: '',
       password: '',
     };
+
     if (this.signinForm.valid) {
       for (let control in this.signinForm.controls) {
         Object.defineProperty(loginData, control, {
           value: this.signinForm.controls[control].value,
         });
       }
+      console.log(loginData);
+
       this.signinEmitter.emit(loginData);
     }
   }

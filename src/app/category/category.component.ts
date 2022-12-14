@@ -11,7 +11,6 @@ import { CategoryService } from './category.service';
 })
 export class CategoryComponent implements OnInit {
   products$?: Observable<Product[]>;
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService
@@ -24,5 +23,12 @@ export class CategoryComponent implements OnInit {
         this.products$ = this.categoryService.getProducts(category, products);
       },
     });
+  }
+
+  checkIfLast(index: number, products: Product[] | null): boolean {
+    if (products) {
+      return index === products.length - 1;
+    }
+    return false;
   }
 }

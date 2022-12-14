@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { concatMap, Observable, Subject, Subscription, switchMap } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { UserData } from './register-form/register-form.component';
 import { UserService } from './user.service';
 
@@ -10,20 +11,31 @@ import { UserService } from './user.service';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
-  subscription!: Subscription;
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
   onSignup(user: UserData) {
-    this.subscription = this.userService.signup(user);
+    this.userService.signup(user).subscribe({
+      next: (res) => {},
+    });
   }
 
   onSignin(user: Omit<UserData, 'name' | 'surname'>) {
-    this.subscription = this.userService.signin(user).subscribe();
+    this.userService.signin(user).subscribe({
+      next: (res) => {
+        console.log(res);
+
+        res.status === 200
+          ? this.authService.isLogged$.next(true)
+          : this.authService.isLogged$.next(false);
+      },
+    });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  ngOnDestroy() {}
 }

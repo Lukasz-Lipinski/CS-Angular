@@ -10,11 +10,11 @@
     </div>
     <div>
       <a
-        routerLink="/signin"
+        [routerLink]="isLogged ? '/' : '/signin'"
         class="text-blue-800 px-4 text-sm hover:underline"
       >
         <fa-icon [icon]="faUser" class="px-1"></fa-icon>
-        Zaloguj się
+        {{ isLogged ? "Wyloguj" : "Zaloguj się" }}
       </a>
     </div>
   </div>

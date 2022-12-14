@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 export interface Subcategory {
   [categoryName: string]: string[];
@@ -14,8 +15,7 @@ export class AuthService {
     Komputery: ['Laptopy', 'Komputery stacjonarne', 'Tablety', 'Słuchawki'],
     Smartfony: ['Apple', 'Samsung', 'Nokia', 'Motorola', 'Lenovo'],
   };
-
-  isLogged = false;
+  isLogged$ = new BehaviorSubject<boolean>(false);
 
   constructor() {}
 }
