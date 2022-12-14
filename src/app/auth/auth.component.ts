@@ -47,4 +47,13 @@ export class AuthComponent implements OnInit {
   hideSubcategory() {
     this.subcategoryID = '';
   }
+
+  onLogout() {
+    this.isLogged && this.authService.isLogged$.next(false);
+  }
+
+  ngOnDestroy() {
+    this.authService.isLogged$.next(this.isLogged);
+    this.authService.isLogged$.complete();
+  }
 }

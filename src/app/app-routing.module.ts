@@ -5,12 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { SpecialOffersComponent } from './special-offers/special-offers.component';
 import { CategoryComponent } from './category/category.component';
 import { InfoComponent } from './components/info/info.component';
+import { SigninPageGuard } from './signin/signin.component.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'special-offers', component: SpecialOffersComponent },
   { path: 'contact', component: SpecialOffersComponent },
-  { path: 'signin', component: SigninComponent },
+  { path: 'signin', component: SigninComponent, canActivate: [SigninPageGuard] },
   { path: 'claims', component: SpecialOffersComponent },
   { path: 'cart', component: SpecialOffersComponent },
   { path: ':info', component: InfoComponent },

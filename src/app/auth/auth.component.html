@@ -11,6 +11,7 @@
     <div>
       <a
         [routerLink]="isLogged ? '/' : '/signin'"
+        (click)="onLogout()"
         class="text-blue-800 px-4 text-sm hover:underline"
       >
         <fa-icon [icon]="faUser" class="px-1"></fa-icon>

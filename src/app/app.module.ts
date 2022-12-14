@@ -12,6 +12,7 @@ import { SigninModule } from './signin/signin.module';
 import { CategoryModule } from './category/category.module';
 import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
+import { SigninPageGuard } from './signin/signin.component.guard';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,9 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     SigninModule,
     CategoryModule,
-    SharedModule 
-   ],
-  providers: [],
+    SharedModule,
+  ],
+  providers: [SigninPageGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
