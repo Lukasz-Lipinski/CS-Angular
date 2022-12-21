@@ -29,4 +29,6 @@ export class UserService {
       .post<Res>(`${this.backendApi}/register`, user)
       .pipe(take(1));
   }
+
+  checkAuth() {}
 }

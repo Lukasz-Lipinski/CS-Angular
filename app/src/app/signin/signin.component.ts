@@ -11,6 +11,8 @@ import { UserService } from './user.service';
   styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent implements OnInit {
+  private sub?: Subscription;
+
   constructor(
     private userService: UserService,
     private router: Router,
@@ -26,16 +28,17 @@ export class SigninComponent implements OnInit {
   }
 
   onSignin(user: Omit<UserData, 'name' | 'surname'>) {
-    this.userService.signin(user).subscribe({
+    this.sub = this.userService.signin(user).subscribe({
       next: (res) => {
-        console.log(res);
-
         res.status === 200
           ? this.authService.isLogged$.next(true)
           : this.authService.isLogged$.next(false);
+        this.router.navigate(['/']);
       },
     });
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
 }
