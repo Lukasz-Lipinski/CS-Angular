@@ -31,8 +31,8 @@ app.get('/api/products', ProductRouter);
 app.post('/api/products', ProductRouter);
 
 //User
+app.get('/api/user', UserRouter);
 app.post('/api/user/:id', UserRouter);
-// app.post("/api/user/login", users);
 
 if (process.env.NODE_ENV === 'production') {
   app.get('**', (req, res) => {

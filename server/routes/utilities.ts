@@ -1,5 +1,14 @@
+import {
+  Request,
+  Response,
+  NextFunction,
+} from 'express';
 import { MongoClient } from 'mongodb';
-import { compare, hash } from 'bcrypt';
+import {
+  compare,
+  compareSync,
+  hash,
+} from 'bcrypt';
 
 export const salt = 10;
 
@@ -47,17 +56,22 @@ export async function checkUserData(
 
   const allUsers = await client.find().toArray();
 
-  const isUser = allUsers.find(
-    async (user) =>
-      (await compare(
-        incomingUser.password,
-        user.password
-      )) && user
+  const isUser = allUsers.find((user) =>
+    compareSync(
+      incomingUser.password,
+      user.password
+    )
   );
 
   return isUser;
 }
 
-export function verifyAuth(token: string) {
-  
+export function verifyAuth(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const { authorization } = req.headers;
+
+  console.log(authorization);
 }

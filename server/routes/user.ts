@@ -10,17 +10,15 @@ import {
   connectToDB,
   salt,
   UserData,
+  verifyAuth,
 } from './utilities';
 
 export const UserRouter = express.Router();
 
 UserRouter.get(
   '/api/user',
-  (req: Request, res: Response) => {
-    const token = req.headers.authorization;
-
-    console.log(token);
-  }
+  verifyAuth,
+  (req: Request, res: Response) => {}
 );
 
 UserRouter.post(
