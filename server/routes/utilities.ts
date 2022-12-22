@@ -4,11 +4,8 @@ import {
   NextFunction,
 } from 'express';
 import { MongoClient } from 'mongodb';
-import {
-  compare,
-  compareSync,
-  hash,
-} from 'bcrypt';
+import { compareSync } from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export const salt = 10;
 
@@ -73,5 +70,21 @@ export function verifyAuth(
 ) {
   const { authorization } = req.headers;
 
-  console.log(authorization);
+  if (process.env.SECRET_KEY && authorization) {
+    jwt.verify(
+      authorization,
+      process.env.SECRET_KEY,
+      (err: any, user: any) => {
+        console.log(err);
+
+        if (err) return res.status(403);
+
+        req.body = user;
+
+        next();
+      }
+    );
+  } else {
+    return res.status(403);
+  }
 }

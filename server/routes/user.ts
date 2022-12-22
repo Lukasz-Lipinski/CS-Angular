@@ -18,7 +18,10 @@ export const UserRouter = express.Router();
 UserRouter.get(
   '/api/user',
   verifyAuth,
-  (req: Request, res: Response) => {}
+  (req: Request, res: Response) => {
+    const { body } = req;
+    return res.status(200).json(body);
+  }
 );
 
 UserRouter.post(
@@ -52,8 +55,23 @@ UserRouter.post(
       password: hashedPassword,
     });
 
+    const { email, surname, name } = body;
+
+    const token = jwt.sign(
+      {
+        email,
+        name,
+        surname,
+      },
+      process.env.SECRET_KEY!,
+      {
+        expiresIn: '1 day',
+      }
+    );
+
     return res.status(200).json({
       status: 200,
+      token,
       msg: 'Registration was done successfully',
     });
   }
@@ -78,7 +96,7 @@ UserRouter.post(
         },
         process.env.SECRET_KEY!,
         {
-          expiresIn: `1 day`,
+          expiresIn: '1 day',
         }
       );
 

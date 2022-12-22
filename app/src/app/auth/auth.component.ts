@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './auth.service';
 
 export interface Link {
@@ -30,7 +30,10 @@ export class AuthComponent implements OnInit {
   ];
   isLogged!: boolean;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit() {
     this.authService.isLogged$.subscribe({
@@ -49,11 +52,12 @@ export class AuthComponent implements OnInit {
   }
 
   onLogout() {
-    this.isLogged && this.authService.isLogged$.next(false);
+    this.authService.isLogged$.next(false);
+    this.cookieService.delete('token');
   }
 
   ngOnDestroy() {
-    this.authService.isLogged$.next(this.isLogged);
+    this.authService.isLogged$.next(false);
     this.authService.isLogged$.complete();
   }
 }

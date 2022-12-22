@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject } from 'rxjs';
 
 export interface Subcategory {
@@ -17,5 +18,9 @@ export class AuthService {
   };
   isLogged$ = new BehaviorSubject<boolean>(false);
 
-  constructor() {}
+  constructor(private cookieService: CookieService) {}
+
+  checkAuth(): boolean {
+    return this.cookieService.check('token');
+  }
 }

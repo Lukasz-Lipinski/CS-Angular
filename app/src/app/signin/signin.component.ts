@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { concatMap, Observable, Subject, Subscription, switchMap } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { UserData } from './register-form/register-form.component';
 import { UserService } from './user.service';
@@ -16,7 +17,8 @@ export class SigninComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {}
@@ -29,11 +31,12 @@ export class SigninComponent implements OnInit {
 
   onSignin(user: Omit<UserData, 'name' | 'surname'>) {
     this.sub = this.userService.signin(user).subscribe({
-      next: (res) => {
-        res.status === 200
-          ? this.authService.isLogged$.next(true)
-          : this.authService.isLogged$.next(false);
-        this.router.navigate(['/']);
+      next: ({ token, status }) => {
+        if (status === 200 && token) {
+          this.cookieService.set('token', token);
+          this.authService.isLogged$.next(true);
+          this.router.navigate(['/']);
+        }
       },
     });
   }

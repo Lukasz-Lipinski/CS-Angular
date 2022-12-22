@@ -13,6 +13,7 @@ import { CategoryModule } from './category/category.module';
 import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { SigninPageGuard } from './signin/signin.component.guard';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { SigninPageGuard } from './signin/signin.component.guard';
     CategoryModule,
     SharedModule,
   ],
-  providers: [SigninPageGuard],
+  providers: [SigninPageGuard, CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
