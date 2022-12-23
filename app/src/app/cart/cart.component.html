@@ -1,0 +1,12 @@
+<ng-template #Info>
+  <p class="text-lg">Twój koszyk jest pusty</p>
+</ng-template>
+
+<div class="p-3">
+  <h2 class="text-2xl font-bold">Twój koszyk</h2>
+  <div *ngIf="cart; else Info">
+    <app-chosen-product
+      *ngFor="let chosenProduct of cart | async"
+    ></app-chosen-product>
+  </div>
+</div>

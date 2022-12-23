@@ -6,14 +6,22 @@ import { SpecialOffersComponent } from './special-offers/special-offers.componen
 import { CategoryComponent } from './category/category.component';
 import { InfoComponent } from './components/info/info.component';
 import { SigninPageGuard } from './signin/signin.component.guard';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'special-offers', component: SpecialOffersComponent },
   { path: 'contact', component: SpecialOffersComponent },
-  { path: 'signin', component: SigninComponent, canActivate: [SigninPageGuard] },
+  {
+    path: 'signin',
+    component: SigninComponent,
+    canActivate: [SigninPageGuard],
+  },
   { path: 'claims', component: SpecialOffersComponent },
-  { path: 'cart', component: SpecialOffersComponent },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
   { path: ':info', component: InfoComponent },
   { path: ':category/:products', component: CategoryComponent },
 ];

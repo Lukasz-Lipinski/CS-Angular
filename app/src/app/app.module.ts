@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { SigninPageGuard } from './signin/signin.component.guard';
 import { CookieService } from 'ngx-cookie-service';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CookieService } from 'ngx-cookie-service';
     SigninModule,
     CategoryModule,
     SharedModule,
+    CartModule,
   ],
   providers: [SigninPageGuard, CookieService],
   bootstrap: [AppComponent],
