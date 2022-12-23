@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { UserData } from '../signin/register-form/register-form.component';
 
 export interface Subcategory {
   [categoryName: string]: string[];
@@ -17,6 +18,7 @@ export class AuthService {
     Smartfony: ['Apple', 'Samsung', 'Nokia', 'Motorola', 'Lenovo'],
   };
   isLogged$ = new BehaviorSubject<boolean>(false);
+  user$ = new Subject<Omit<UserData, 'password'> | null>();
 
   constructor(private cookieService: CookieService) {}
 

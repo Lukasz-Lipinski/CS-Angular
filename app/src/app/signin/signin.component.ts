@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { Subscription } from 'rxjs';
+import { catchError, of, Subscription, switchMap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { UserData } from './register-form/register-form.component';
 import { UserService } from './user.service';
@@ -30,15 +31,39 @@ export class SigninComponent implements OnInit {
   }
 
   onSignin(user: Omit<UserData, 'name' | 'surname'>) {
-    this.sub = this.userService.signin(user).subscribe({
-      next: ({ token, status }) => {
-        if (status === 200 && token) {
-          this.cookieService.set('token', token);
-          this.authService.isLogged$.next(true);
-          this.router.navigate(['/']);
-        }
-      },
-    });
+    const signInStream$ = this.userService.signin(user);
+
+    signInStream$
+      .pipe(
+        switchMap((val) => {
+          const { status, token } = val;
+
+          if (token && status === 200) {
+            this.cookieService.set('token', token);
+            return this.userService.getUserData(token);
+          }
+
+          throw of({
+            ...val,
+          });
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return of({
+            ...err,
+          });
+        })
+      )
+      .subscribe({
+        next: (val) => {
+          if ('error' in val) {
+            console.log(val);
+          } else {
+            this.authService.isLogged$.next(true);
+            this.authService.user$.next(val as UserData);
+            this.router.navigate(['/']);
+          }
+        },
+      });
   }
 
   ngOnDestroy() {

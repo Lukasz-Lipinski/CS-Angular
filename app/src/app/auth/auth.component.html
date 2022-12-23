@@ -8,14 +8,15 @@
         >{{ link.label }}</a
       >
     </div>
-    <div>
+    <div class="flex gap-8">
+      <p *ngIf="userData$ | async as user">Hello {{ user.name }}</p>
       <a
-        [routerLink]="isLogged ? '/' : '/signin'"
+        [routerLink]="(isLogged$ | async) ? '/' : '/signin'"
         (click)="onLogout()"
         class="text-blue-800 px-4 text-sm hover:underline"
       >
         <fa-icon [icon]="faUser" class="px-1"></fa-icon>
-        {{ isLogged ? "Wyloguj" : "Zaloguj się" }}
+        {{ (isLogged$ | async) ? "Wyloguj" : "Zaloguj się" }}
       </a>
     </div>
   </div>
