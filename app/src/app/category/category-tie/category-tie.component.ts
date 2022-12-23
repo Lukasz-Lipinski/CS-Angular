@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/components/advert/advert.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { Product } from 'src/app/components/advert/advert.service';
 export class CategoryTieComponent implements OnInit {
   @Input() product!: Product;
   @Input() last?: boolean;
+  @Output() addToCartEmitter = new EventEmitter<Product>();
+
   constructor() {}
 
   get getTitle() {
@@ -17,4 +19,8 @@ export class CategoryTieComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  onAddToCart() {
+    this.addToCartEmitter.emit(this.product);
+  }
 }

@@ -7,6 +7,7 @@
   <div *ngIf="cart; else Info">
     <app-chosen-product
       *ngFor="let chosenProduct of cart | async"
+      [chosenProduct]="chosenProduct"
     ></app-chosen-product>
   </div>
 </div>

@@ -11,6 +11,7 @@
       <app-category-tie
         *ngFor="let product of products$ | async; let i = index"
         [product]="product"
+        (addToCartEmitter)="onAddToCart($event)"
         [last]="checkIfLast(i, products$ | async)"
       ></app-category-tie>
     </ul>
