@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
 import { Product } from '../components/advert/advert.service';
 import { UserService } from '../signin/user.service';
 import { CategoryService } from './category.service';
@@ -18,7 +17,6 @@ export class CategoryComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService,
     private userService: UserService,
-    private authService: AuthService,
     private cookieService: CookieService
   ) {}
 
@@ -39,11 +37,7 @@ export class CategoryComponent implements OnInit {
   }
 
   onAddToCart(product: Product) {
-    console.log(this.authService.isLogged$.value);
-
-    if (this.authService.isLogged$.value) {
-      const token = this.cookieService.get('token');
-      this.userService.saveProduct(product, token);
-    }
+    const token = this.cookieService.get('token');
+    this.userService.saveProduct(product, token);
   }
 }

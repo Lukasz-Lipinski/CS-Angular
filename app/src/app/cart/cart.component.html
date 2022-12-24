@@ -4,9 +4,9 @@
 
 <div class="p-3">
   <h2 class="text-2xl font-bold">Twój koszyk</h2>
-  <div *ngIf="cart; else Info">
+  <div *ngIf="cart$ | async; else Info">
     <app-chosen-product
-      *ngFor="let chosenProduct of cart | async"
+      *ngFor="let chosenProduct of cart$ | async"
       [chosenProduct]="chosenProduct"
     ></app-chosen-product>
   </div>

@@ -24,6 +24,15 @@ UserRouter.get(
   }
 );
 
+// UserRouter.get('/api/user/cart', verifyAuth,   (req: Request, res: Response) => {});
+// UserRouter.post(
+//   '/api/user/cart',
+//   verifyAuth,
+//   (req: Request<any, any>, res: Response) => {
+//     const;
+//   }
+// );
+
 UserRouter.post(
   '/api/user/register',
   async (
