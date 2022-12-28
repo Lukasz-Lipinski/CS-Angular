@@ -1,1 +1,10 @@
-<p>chosen-product works!</p>
+<div class="grid grid-cols-4 justify-center p-2 gap-4 border-b">
+  <div class="col-span-3">
+    <p class="font-bold">{{ chosenProduct.brand }}</p>
+    <p>{{ chosenProduct.model }}</p>
+  </div>
+  <div class="col-span-1">
+    <p>{{ getNewPrice() }}</p>
+    <app-counter (counterEmitter)="countPrice($event)"></app-counter>
+  </div>
+</div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { UserData } from '../signin/register-form/register-form.component';
+import { UserService } from '../signin/user.service';
 import { AuthService } from './auth.service';
 
 export interface Link {
@@ -16,6 +17,7 @@ export interface Link {
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
+  faCart = faCartShopping;
   faUser = faUser;
   searcher: string = '';
   subcategoryID: string = '';
@@ -32,15 +34,22 @@ export class AuthComponent implements OnInit {
   ];
   isLogged$!: Observable<boolean>;
   userData$!: Observable<Omit<UserData, 'password'> | null>;
+  badge$!: Observable<number>;
 
   constructor(
     private authService: AuthService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
     this.isLogged$ = this.authService.isLogged$;
     this.userData$ = this.authService.user$;
+    this.badge$ = this.userService.cart.pipe(
+      switchMap((addedProduct) => {
+        return of(addedProduct.length);
+      })
+    );
   }
 
   showSubcategory(item: Link) {
@@ -60,7 +69,11 @@ export class AuthComponent implements OnInit {
   ngOnDestroy() {
     this.authService.isLogged$.next(false);
     this.authService.isLogged$.complete();
+
     this.authService.user$.next(null);
     this.authService.user$.complete();
+
+    this.userService.cart.next([]);
+    this.userService.cart.complete();
   }
 }

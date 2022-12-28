@@ -39,7 +39,11 @@
       |
       <button class="p-1">Szukaj</button>
     </label>
-    <a routerLink="cart" class="cursor-pointer">Koszyk</a>
+    <a routerLink="cart" class="cursor-pointer relative">
+      <fa-icon [icon]="faCart"></fa-icon>
+      Koszyk
+      <app-badge [productsNumber]="(badge$ | async)!"></app-badge>
+    </a>
   </div>
   <div
     class="flex flex-col items-center bg-yellow-300 pt-2"

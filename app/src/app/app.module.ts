@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SigninPageGuard } from './signin/signin.component.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { CartModule } from './cart/cart.module';
+import { BadgeComponent } from './components/badge/badge.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CartModule } from './cart/cart.module';
     SpecialOffersComponent,
     AuthSubcategoryComponent,
     AdvertComponent,
+    BadgeComponent,
   ],
   imports: [
     BrowserModule,

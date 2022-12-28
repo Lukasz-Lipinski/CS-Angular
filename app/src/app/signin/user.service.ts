@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, isDevMode } from '@angular/core';
-import { Observable, take, catchError, ReplaySubject, Subject } from 'rxjs';
+import { Observable, take, catchError, BehaviorSubject } from 'rxjs';
 import { environment as envDev } from 'src/environments/environment';
 import { environment as envProd } from 'src/environments/environment.prod';
 import { Product } from '../components/advert/advert.service';
@@ -20,7 +20,7 @@ export class UserService {
     ? `${envDev.backendAPI}/api/user`
     : `${envProd.backendAPI}/api/user`;
 
-  cart = new Subject<Product[]>();
+  cart = new BehaviorSubject<Product[]>([]);
   private currCart: Product[] = [];
 
   constructor(private http: HttpClient) {}
