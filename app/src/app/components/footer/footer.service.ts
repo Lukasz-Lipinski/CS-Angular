@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 export interface FooterLink {
   header: string;
-  links: string[];
+  links: { href: string; label: string }[];
 }
 
 @Injectable({
@@ -12,19 +12,43 @@ export class FooterService {
   private links: FooterLink[] = [
     {
       header: 'zakupy',
-      links: ['dostawa', 'zwroty', 'raty'],
+      links: [
+        { label: 'dostawa', href: 'delivery' },
+        { label: 'zwroty', href: 'claims' },
+        { label: 'raty', href: 'installments' },
+      ],
     },
     {
       header: 'Moje Konto',
-      links: ['korzyści', 'rejestracja paragonu'],
+      links: [
+        { label: 'korzyści', href: 'benefits' },
+        {
+          label: 'rejestracja paragonu',
+          href: 'recipe-registration',
+        },
+      ],
     },
     {
       header: 'informacje',
-      links: ['bezpieczeństwo', 'polityka prywatności', 'regulamin', 'contact'],
+      links: [
+        {
+          label: 'bezpieczeństwo',
+          href: 'security',
+        },
+        {
+          label: 'polityka prywatności',
+          href: 'privacy-politics',
+        },
+        { label: 'regulamin', href: 'regulamin' },
+        { label: 'kontakt', href: 'contact' },
+      ],
     },
     {
       header: 'CS',
-      links: ['o firmie', 'sklepy'],
+      links: [
+        { label: 'o firmie', href: 'about' },
+        { label: 'sklepy', href: 'shops' },
+      ],
     },
   ];
 

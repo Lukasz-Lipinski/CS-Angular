@@ -10,18 +10,28 @@
     <div class="flex flex-col">
       <p>pon.-pt.: 8:00-20:00</p>
       <p>sob.: 9:00-16:00</p>
-      <p class="text-red-500">niedz.: nieczynne</p>
+      <p class="text-red-500">
+        niedz.: nieczynne
+      </p>
     </div>
     <div>logo</div>
   </section>
 
   <section class="flex justify-between px-44">
     <div *ngFor="let item of footerData">
-      <h1 class="font-bold text-2xl py-4">{{ item.header | upperletter }}</h1>
-      <ul class="flex flex-col" *ngFor="let link of item.links">
+      <h1 class="font-bold text-2xl py-4">
+        {{ item.header | upperletter }}
+      </h1>
+      <ul
+        class="flex flex-col"
+        *ngFor="let link of item.links"
+      >
         <li>
-          <a [routerLink]="[link]" class="hover:underline text-sm py-2">
-            {{ link | upperletter }}
+          <a
+            [routerLink]="[link.href]"
+            class="hover:underline text-sm py-2"
+          >
+            {{ link.label | upperletter }}
           </a>
         </li>
       </ul>

@@ -6,14 +6,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./counter.component.css'],
 })
 export class CounterComponent implements OnInit {
-  @Input() counter: number = 0;
+  @Input() counter: number = 1;
   @Output() counterEmitter = new EventEmitter<number>();
   constructor() {}
 
   ngOnInit(): void {}
 
   onDecrement() {
-    this.counter >= 1 && this.counter--;
+    this.counter >= 2 && this.counter--;
     this.counterEmitter.next(this.counter);
   }
 

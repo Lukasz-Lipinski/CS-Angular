@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './Home/Home.component';
-import { SpecialOffersComponent } from './special-offers/special-offers.component';
 import { AdvertComponent } from './components/advert/advert.component';
 import { SigninModule } from './signin/signin.module';
 import { CategoryModule } from './category/category.module';
@@ -16,6 +15,7 @@ import { SigninPageGuard } from './signin/signin.component.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { CartModule } from './cart/cart.module';
 import { BadgeComponent } from './components/badge/badge.component';
+import { OtherPageComponent } from './other-page/other-page.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +23,10 @@ import { BadgeComponent } from './components/badge/badge.component';
     AuthComponent,
     HomeComponent,
     FooterComponent,
-    SpecialOffersComponent,
     AuthSubcategoryComponent,
     AdvertComponent,
     BadgeComponent,
+    OtherPageComponent,
   ],
   imports: [
     BrowserModule,

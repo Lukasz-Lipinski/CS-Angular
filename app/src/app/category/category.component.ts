@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import {
+  ActivatedRoute,
+  Params,
+} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { Product } from '../components/advert/advert.service';
@@ -13,23 +16,30 @@ import { CategoryService } from './category.service';
 })
 export class CategoryComponent implements OnInit {
   products$?: Observable<Product[]>;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService,
-    private userService: UserService,
-    private cookieService: CookieService
+    private userService: UserService
   ) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe({
       next: (value: Params) => {
         const { category, products } = value;
-        this.products$ = this.categoryService.getProducts(category, products);
+        this.products$ =
+          this.categoryService.getProducts(
+            category,
+            products
+          );
       },
     });
   }
 
-  checkIfLast(index: number, products: Product[] | null): boolean {
+  checkIfLast(
+    index: number,
+    products: Product[] | null
+  ): boolean {
     if (products) {
       return index === products.length - 1;
     }
@@ -37,7 +47,6 @@ export class CategoryComponent implements OnInit {
   }
 
   onAddToCart(product: Product) {
-    const token = this.cookieService.get('token');
-    this.userService.saveProduct(product, token);
+    this.userService.saveProduct(product);
   }
 }
