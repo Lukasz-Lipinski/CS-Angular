@@ -1,0 +1,13 @@
+<ul
+  *ngIf="!checkType()"
+  class="list-disc box-border p-4"
+>
+  <li
+    *ngFor="let par of arrayContent()"
+    class="py-2"
+  >
+    {{ par }}
+  </li>
+</ul>
+
+<p *ngIf="checkType()">{{ stringContent() }}</p>
