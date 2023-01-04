@@ -1,12 +1,20 @@
 <div
-  class="grid grid-cols-2 w-full justify-center text-center px-10 gap-9 py-4"
+  class="grid grid-cols-2 w-full justify-items-center px-10 gap-9 py-4"
 >
-  <div class="col-span-2 w-3/5">
+  <div class="col-span-2 w-4/5 pb-4">
     {{ (content$ | async)?.content }}
   </div>
-  <div class="col-span-1">
+  <div
+    *ngIf="(content$ | async)?.leftColumn"
+    class="text-justify"
+    [ngClass]="
+      (content$ | async)?.rightColumn
+        ? 'col-span-1 w-full'
+        : 'col-span-2 w-3/5'
+    "
+  >
     <h2
-      class="bg-yellow-300 p-3 font-bold text-blue-800"
+      class="bg-yellow-300 p-3 font-bold text-blue-800 text-center"
     >
       {{ (content$ | async)?.leftColumnLabel }}
     </h2>
@@ -17,15 +25,21 @@
     ></app-paragraph>
   </div>
   <div
-    class="col-span-1"
+    class="col-span-1 text-justify w-full"
     *ngIf="(content$ | async)?.rightColumn"
   >
     <h2
-      class="bg-yellow-300 p-3 font-bold text-blue-800"
+      class="bg-yellow-300 p-3 font-bold text-blue-800 text-center"
     >
       {{ (content$ | async)?.rightColumnLabel }}
     </h2>
     <app-paragraph
+      [ngClass]="
+        (content$ | async)?.rightColumnLabel ===
+        'Adres'
+          ? 'text-center'
+          : ''
+      "
       [content]="
         (content$ | async)?.rightColumn | ListPipe
       "

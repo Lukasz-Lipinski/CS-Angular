@@ -62,7 +62,7 @@ export class OtherPageService {
         'Zgodnie z art. 13 ust. 1 i 2 rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o ochronie danych) (Dz. Urz. UE L 119 z 04.05.2016, str. 1), dalej „RODO”, informujemy, że: administratorem Pani/Pana danych osobowych jest CS z siedzibą w Warszawie, ul. xyz 9/99, 11-111 Warszawa, telefon: 11-1111 * Pani/Pana dane osobowe będą przechowywane, zgodnie z art. 97 ust. 1 ustawy Pzp, przez okres 4 lat od dnia zakończenia postępowania o udzielenie zamówienia, a jeżeli czas trwania umowy ',
       rightColumnLabel: 'Adres',
       rightColumn:
-        'Adres: * ul. xyz 9/9, Warszawa 11-111 * Email: firmaCS@example.pl * telefon: 333-333-333',
+        'ul. xyz 9/9, Warszawa 11-111 * Email: firmaCS@example.pl * telefon: 333-333-333',
     },
     'privacy-politics': {
       content: 'test',

@@ -1,6 +1,6 @@
 <ul
   *ngIf="!checkType()"
-  class="list-disc box-border p-4"
+  class="box-border p-4 border-2"
 >
   <li
     *ngFor="let par of arrayContent()"
@@ -10,4 +10,9 @@
   </li>
 </ul>
 
-<p *ngIf="checkType()">{{ stringContent() }}</p>
+<p
+  *ngIf="checkType()"
+  class="border-2 p-4 box-border"
+>
+  {{ stringContent() }}
+</p>
