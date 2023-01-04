@@ -9,7 +9,9 @@ import { OtherPageService } from './other-page.service';
 export interface Content {
   content: string;
   leftColumn?: string;
+  leftColumnLabel?: string;
   rightColumn?: string;
+  rightColumnLabel?: string;
 }
 
 @Component({
