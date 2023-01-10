@@ -48,7 +48,12 @@ export class OtherPageService {
         'Bank X, * Bank Y, * Bank Z, * Bank A, * Bank C',
     },
     benefits: {
-      content: 'test',
+      content:
+        'Zarejestrowane konta dają wiele udogodnień, załóż i sprawdź!',
+      leftColumnLabel:
+        'Korzyści z załózenia konta',
+      leftColumn:
+        'Wgląd do historii zakupów * Możliwość pobrania paragonów i faktur w dowolnej chwili * Łatwy proces składania reklamacji * Wygodne sprawdzanie statusu reklamacji/zwrotów',
     },
     'recipe-registration': {
       content:
@@ -65,13 +70,18 @@ export class OtherPageService {
         'ul. xyz 9/9, Warszawa 11-111 * Email: firmaCS@example.pl * telefon: 333-333-333',
     },
     'privacy-politics': {
-      content: 'test',
+      content:
+        'Korzystając z Serwisu zgadzasz się z Regulaminem, Polityką Prywatności i Polityką Cookies. Szczegółowo opisaliśmy w nich zasady korzystania z mikroPorady.pl oraz sposób gromadzenia, wykorzystania i udostępnienia danych osobowych. Zapoznaj się z naszym komunikatem w związku realizacją obowiązku z art. 13 RODO',
     },
     regulamin: {
-      content: 'test',
+      content: '',
+      leftColumnLabel: 'Reglumanin Sklepu CS',
+      leftColumn:
+        'Sprzedawca - osoba fizyczna prowadząca działalność gospodarczą pod firmą CS, wpisaną do Centralnej Ewidencji i Informacji o Działalności Gospodarczej (CEIDG) prowadzonej przez ministra właściwego ds. gospodarki, NIP 0989124xxf * Klient - każdy podmiot dokonujący zakupów za pośrednictwem Sklepu. * Przedsiębiorca - osoba fizyczna, osoba prawna i jednostka organizacyjna niebędąca osobą prawną, której odrębna ustawa przyznaje zdolność prawną, wykonująca we własnym imieniu działalność gospodarczą, która korzysta ze Sklepu. * Sklep - sklep internetowy prowadzony przez Sprzedawcę pod adresem internetowym www.xyz.example.com * Umowa zawarta na odległość - umowa zawarta z Klientem w ramach zorganizowanego systemu zawierania umów na odległość (w ramach Sklepu), bez jednoczesnej fizycznej obecności stron, z wyłącznym wykorzystaniem jednego lub większej liczby środków porozumiewania się na odległość do chwili zawarcia umowy włącznie. * Regulamin - niniejszy regulamin Sklepu. * Zamówienie - oświadczenie woli Klienta składane za pomocą Formularza Zamówienia i zmierzające bezpośrednio do zawarcia Umowy Sprzedaży Produktu lub Produktów ze Sprzedawcą. * Konto - konto klienta w Sklepie, są w nim gromadzone są dane podane przez Klienta oraz informacje o złożonych przez niego Zamówieniach w Sklepie. * Formularz rejestracji - formularz dostępny w Sklepie, umożliwiający utworzenie Konta. * Formularz zamówienia - interaktywny formularz dostępny w Sklepie umożliwiający złożenie Zamówienia, w szczególności poprzez dodanie Produktów do Koszyka oraz określenie warunków Umowy Sprzedaży, w tym sposobu dostawy i płatności. * Koszyk – element oprogramowania Sklepu, w którym widoczne są wybrane przez Klienta Produkty do zakupu, a także istnieje możliwość ustalenia i modyfikacji danych Zamówienia, w szczególności ilości produktów. * Produkt - dostępna w Sklepie rzecz ruchoma/usługa będąca przedmiotem Umowy Sprzedaży między Klientem a Sprzedawcą. * Umowa Sprzedaży - umowa sprzedaży Produktu zawierana albo zawarta między Klientem a Sprzedawcą za pośrednictwem Sklepu internetowego. Przez Umowę Sprzedaży rozumie się też - stosowanie do cech Produktu - umowę o świadczenie usług i umowę o dzieło',
     },
     contact: {
-      content: 'test',
+      content:
+        'Siedziba firmy znajduje się w Warszawie przy ulicy xyz. Na miejscu jest parking, gdzie można zaparkować samochód. Aby wjechać na teren siedzby oraz parkingu należy powiadomić ochronę o umówionym spotkaniu.',
     },
     about: {
       content:
@@ -85,7 +95,8 @@ export class OtherPageService {
         'Wrocław, * Tarnów, * Białystok, * Warszawa, * Gdańsk, * Sopot, * Łódź, * Szczecin, * Poznań, * Kraków, * Bielany Wrocławskie',
     },
     'special-offers': {
-      content: 'test',
+      content:
+        'Na stronie głównej widnieją reklmay ze specjalnymi ofertami i aktualnymi promocjami !',
     },
   };
   constructor() {}

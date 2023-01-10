@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CartModule } from './cart/cart.module';
 import { BadgeComponent } from './components/badge/badge.component';
 import { OtherPageComponent } from './other-page/other-page.component';
+import { FoundItemsComponent } from './components/found-items/found-items.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { OtherPageComponent } from './other-page/other-page.component';
     AdvertComponent,
     BadgeComponent,
     OtherPageComponent,
+    FoundItemsComponent,
   ],
   imports: [
     BrowserModule,

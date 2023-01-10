@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  ActivatedRoute,
+  ParamMap,
+  Params,
+  Router,
+} from '@angular/router';
+import {
+  faCartShopping,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, of, switchMap } from 'rxjs';
 import { UserData } from '../signin/register-form/register-form.component';
@@ -20,6 +29,7 @@ export class AuthComponent implements OnInit {
   faCart = faCartShopping;
   faUser = faUser;
   searcher: string = '';
+  cat: string = 'all';
   subcategoryID: string = '';
   links: Link[] = [
     { href: '/agd', label: 'AGD' },
@@ -28,18 +38,25 @@ export class AuthComponent implements OnInit {
     { href: '/smartfony', label: 'Smartfony' },
   ];
   upperLinks: Link[] = [
-    { href: '/special-offers', label: 'Promocje' },
+    {
+      href: '/special-offers',
+      label: 'Promocje',
+    },
     { href: '/contact', label: 'Kontakt' },
     { href: '/claims', label: 'Reklamacje' },
   ];
   isLogged$!: Observable<boolean>;
-  userData$!: Observable<Omit<UserData, 'password'> | null>;
+  userData$!: Observable<Omit<
+    UserData,
+    'password'
+  > | null>;
   badge$!: Observable<number>;
 
   constructor(
     private authService: AuthService,
     private cookieService: CookieService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -64,6 +81,15 @@ export class AuthComponent implements OnInit {
     this.authService.isLogged$.next(false);
     this.authService.user$.next(null);
     this.cookieService.delete('token');
+  }
+
+  onSearch() {
+    this.router.navigate(['searcher'], {
+      queryParams: {
+        category: this.cat,
+        product: this.searcher,
+      },
+    });
   }
 
   ngOnDestroy() {

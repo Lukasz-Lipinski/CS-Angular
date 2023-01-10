@@ -9,6 +9,7 @@ import { CategoryComponent } from './category/category.component';
 import { SigninPageGuard } from './signin/signin.component.guard';
 import { CartComponent } from './cart/cart.component';
 import { OtherPageComponent } from './other-page/other-page.component';
+import { FoundItemsComponent } from './components/found-items/found-items.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'searcher',
+    component: FoundItemsComponent,
   },
   {
     path: ':info',
